@@ -1,0 +1,6 @@
+{
+  "project_name": "filter",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_short_description": "Unix filter!",
+  "version": "0.1.0"
+}
