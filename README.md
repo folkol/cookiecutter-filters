@@ -14,13 +14,29 @@ $ time paste /usr/share/dict/words <(jot -r 0 1 10) | while read WORD REPEAT; do
 
 TODO: Count number of syscalls with `sudo dtruss -c ./wc <data 2>&1 | grep -v 'error on enabled'`.
 
-```
-$ time wc -l data
- 11925635 data
 
-real	0m0.126s
-user	0m0.095s
-sys	0m0.030s
+```
+$ cc -Ofast -o fread fread.c && time ./fread <data
+
+real	0m0.037s
+user	0m0.011s
+sys	0m0.025s
+```
+
+```
+$ cc -Ofast -o getc_unlocked getc_unlocked.c && time ./getc_unlocked <data
+
+real	0m0.307s
+user	0m0.280s
+sys	0m0.026s
+```
+
+```
+$ cc -Ofast -o gets gets.c && time ./gets <data
+
+real	0m0.636s
+user	0m0.608s
+sys	0m0.027s
 ```
 
 ```
@@ -32,19 +48,12 @@ sys	0m0.040s
 ```
 
 ```
-$ time awk '{}' <data
+$ time wc -l data
+ 11925635 data
 
-real	0m9.211s
-user	0m9.154s
-sys	0m0.042s
-```
-
-```
-$ time sed -n <data
-
-real	0m2.900s
-user	0m2.859s
-sys	0m0.035s
+real	0m0.126s
+user	0m0.095s
+sys	0m0.030s
 ```
 
 ```
@@ -64,27 +73,19 @@ sys	0m0.051s
 ```
 
 ```
-$ cc -Ofast -o getc_unlocked getc_unlocked.c && time ./getc_unlocked <data
+$ time sed -n <data
 
-real	0m0.307s
-user	0m0.280s
-sys	0m0.026s
+real	0m2.900s
+user	0m2.859s
+sys	0m0.035s
 ```
 
 ```
-$ cc -Ofast -o fread fread.c && time ./fread <data
+$ time awk '{}' <data
 
-real	0m0.037s
-user	0m0.011s
-sys	0m0.025s
-```
-
-```
-$ cc -Ofast -o gets gets.c && time ./gets <data
-
-real	0m0.636s
-user	0m0.608s
-sys	0m0.027s
+real	0m9.211s
+user	0m9.154s
+sys	0m0.042s
 ```
 
 ```
