@@ -1,8 +1,11 @@
 # Filters
 
-Comparisons of various text filter implementations
+Home for some unix filter cookiecutter templates. WIP!
+
 
 ## Get some data
+
+Comparisons of various text filter implementations
 
 Generate some data:
 
